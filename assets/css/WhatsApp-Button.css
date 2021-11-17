@@ -1,0 +1,30 @@
+* {}
+
+*:before,
+*:after {
+    box-sizing: initial;
+}
+
+#wp {
+    position: relative;
+    margin-top: 20px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50px;
+    background-color: #ff334b;
+    font-size: 30px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0px 0px 20px rgba(244, 7, 7, 0.48);
+    color: #FFF;
+}
+
+#wp:hover {
+    background-color: #206A5D;
+    box-shadow: 0px 0px 20px rgba(0, 125, 80, 0.48);
+}
+
+.episodelist {
+    background-color: #3e3838;
+    padding: 30px;
+}
