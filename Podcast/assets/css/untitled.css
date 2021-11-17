@@ -1,0 +1,29 @@
+#content {
+    height: 100vh;
+    padding: 0;
+}
+
+.invalid {
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: .875em;
+    color: #dc3545;
+}
+
+.invalid ul {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.id_ep {
+    display: none;
+}
+
+.id_pc {
+    display: none;
+}
+
+.id_cp {
+    display: none;
+}
