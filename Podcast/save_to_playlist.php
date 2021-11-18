@@ -15,6 +15,6 @@ if (isset($_POST['add-to-playlist'])) {
         echo "<script>window.location.href='index.php'</script>";
     } else {
         echo "<script>alert('Something went wrong! Please try again!');</script>";
-        echo "<script>window.location.href='create_podcast.php'</script>";
+        echo "<script>window.location.href='add_to_playlist.php'</script>";
     }
 }

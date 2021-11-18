@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/css/font.css">
+    <link rel="shortcut icon" href="assets/img/image_1.svg">
 </head>
 
 <body>

@@ -11,7 +11,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Profile - Brand</title>
+        <title>Create Podcast</title>
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -26,6 +26,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
         <link rel="stylesheet" href="assets/css/WhatsApp-Button.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link rel="stylesheet" href="assets/css/font.css">
+        <link rel="shortcut icon" href="assets/img/image_1.svg">
     </head>
 
     <body id="page-top">
@@ -77,12 +78,15 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-7">
-                                            <input class="form-control" type="file" accept="image/*" name="image">
+                                            <input class="form-control" type="file" accept="image/*" name="image" id="file">
                                             <div class="invalid" name="invalid-image">
                                                 กรุณาอัพโหลดรูปภาพปกของ Podcast
                                             </div>
                                             <div class="invalid" name="invalid-type">
                                                 กรุณาอัพโหลดไฟล์ที่มีนามสกุล .jpg .jpeg .gif .png .svg เท่านั้น
+                                            </div>
+                                            <div class="invalid" name="invalid-size">
+                                                กรุณาอัพโหลดรูปภาพที่มีขนาด 400x400 px เท่านั้น
                                             </div>
                                         </div>
                                     </div>
@@ -132,6 +136,11 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
             $("input[name='image']").prop('classList').remove('is-invalid')
             $("div[name='invalid-type']").prop('classList').remove('d-block')
         })
+        $("input[name='image']").change(function() {
+            $("input[name='image']").prop('classList').remove('is-invalid')
+            $("div[name='invalid-size']").prop('classList').remove('d-block')
+        })
+
         $("form").submit(function() {
 
 
@@ -158,20 +167,57 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
             var obj = document.create_podcast;
             var typeFile = obj.image.value.split('.');
             typeFile = typeFile[typeFile.length - 1];
-            if (typeFile != "jpg" && typeFile != "jpeg" && typeFile != "gif" && typeFile != "png" && typeFile != "svg" && $("input[name='image']").val() != "") {
-
-                $("input[name='image']").prop('classList').add('is-invalid')
-                $("div[name='invalid-type']").prop('classList').add('d-block')
-                event.preventDefault();
-
-                obj.image.focus();
-                return false;
-            } else if ($("input[name='image']").val() == "") {
+            if ($("input[name='image']").val() == "") {
                 $("input[name='image']").prop('classList').add('is-invalid')
                 $("div[name='invalid-image']").prop('classList').add('d-block')
                 event.preventDefault();
 
-            } else return true;
+            } else {
+                if (typeFile != "jpg" && typeFile != "jpeg" && typeFile != "gif" && typeFile != "png" && typeFile != "svg" && $("input[name='image']").val() != "") {
+
+                    $("input[name='image']").prop('classList').add('is-invalid')
+                    $("div[name='invalid-type']").prop('classList').add('d-block')
+                    event.preventDefault();
+
+                    obj.image.focus();
+                    return false;
+                } else {
+                    if (imgwidth == maxwidth && imgheight == maxheight) {
+                        $("#response").text("ผ่านครับ");
+                    } else {
+                        $("input[name='image']").prop('classList').add('is-invalid')
+                        $("div[name='invalid-size']").prop('classList').add('d-block')
+                        event.preventDefault();
+                        obj.image.focus();
+                        return false;
+                    }
+                }
+            }
+        });
+        var _URL = window.URL || window.webkitURL;
+        var imgwidth = 0;
+        var imgheight = 0;
+        var maxwidth = 400;
+        var maxheight = 400;
+        $('#file').change(function() {
+            var file = $(this)[0].files[0];
+
+            img = new Image();
+
+            img.src = _URL.createObjectURL(file);
+            img.onload = function() {
+                imgwidth = this.width;
+                imgheight = this.height;
+
+                $("#width").text(imgwidth);
+                $("#height").text(imgheight);
+                if (imgwidth != maxwidth && imgheight != maxheight) {
+                    $("input[name='image']").prop('classList').add('is-invalid')
+                    $("div[name='invalid-size']").prop('classList').add('d-block')
+                    event.preventDefault();
+                    obj.image.focus();
+                }
+            };
         });
     </script>
 <?php

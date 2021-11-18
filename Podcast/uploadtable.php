@@ -7,7 +7,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Table - Brand</title>
+        <title>Table</title>
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -20,6 +20,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
         <link rel="stylesheet" href="assets/css/WhatsApp-Button-1.css">
         <link rel="stylesheet" href="assets/css/WhatsApp-Button.css">
         <link rel="stylesheet" href="assets/css/font.css">
+        <link rel="shortcut icon" href="assets/img/image_1.svg">
     </head>
     <style>
     </style>
@@ -36,7 +37,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
                         <div class="card shadow">
                             <div class="card-body" style="margin-bottom: 30px;">
                                 <div class="row">
-                                    <div class="col-md-6 text-nowrap">
+                                    <!-- <div class="col-md-6 text-nowrap">
                                         <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
                                             <label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
                                                     <option value="10" selected="">10</option>
@@ -45,7 +46,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
                                                     <option value="100">100</option>
                                                 </select>&nbsp;</label>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <?php
                                     $text_search = null;
                                     if (isset($_POST["txtKeyword"])) {
@@ -125,7 +126,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
                                     mysqli_close($con);
                                     ?>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-6 align-self-center">
                                         <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
                                             Showing 1 to 10 of 27</p>
@@ -141,7 +142,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
                                             </ul>
                                         </nav>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

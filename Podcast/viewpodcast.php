@@ -97,7 +97,7 @@ if (isset($_GET['id'])) {
 
                         ?>
 
-                                <div class="row" onclick="get_media_form_file(<?php echo $i; ?>)">
+                                <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-12">
 
                                         <div class="eplistbg" style="background-color: #f0f2f5; padding: 20px; margin-bottom: 20px; border-radius: 10px; margin-right: 3%;">
@@ -110,7 +110,7 @@ if (isset($_GET['id'])) {
                                                 <div class="media-body">
 
 
-                                                    <h4><a class="episodetitle" href="#"><?php echo $row['title']; ?></a>
+                                                    <h4><a class="episodetitle" onclick="get_media_form_file(<?php echo $i; ?>)"><?php echo $row['title']; ?></a>
                                                         <a data-bs-toggle="collapse" href="#description">
                                                             <i class="fa fa-chevron-down episodetitle"></i></a>
 

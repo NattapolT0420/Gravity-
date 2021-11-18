@@ -69,7 +69,7 @@ if (isset($_GET['id'])) {
                                                 $sql = "SELECT * FROM media WHERE podcast_id = $podcast_id";
                                                 $query = mysqli_query($con, $sql);
                                                 while ($result = mysqli_fetch_assoc($query)) : ?>
-                                                    <li><input type="checkbox" name="media[]" value="<?php echo $result["id"]; ?>" />
+                                                    <li><input type="checkbox" name="media[]" value="<?php echo $result["id"]; ?>" id="checkbox" />
                                                         <?php echo $result["title"]; ?>
                                                     </li>
                                                 <?php endwhile; ?>
@@ -77,12 +77,12 @@ if (isset($_GET['id'])) {
                                             </ul>
                                         </div>
                                         <div class="invalid" name="invalid-media">
-                                            กรุณาเลือก Playlist
+                                            กรุณาเลือก Media
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xl-8 col-lg-8 col-md-10 col-10">
+                                    <div class="col-xl-8 col-lg-8 col-md-10 col-9">
                                     </div>
                                     <div class="col-xl-4 col-lg-4 col-md-2 col-2">
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -103,74 +103,27 @@ if (isset($_GET['id'])) {
     <script src="assets/js/theme.js "></script>
 </body>
 <script>
-    $("input[name='podcast_name']").keyup(function() {
-        $("input[name='podcast_name']").prop('classList').remove('is-invalid')
-        $("div[name='invalid-podcast_name']").prop('classList').remove('d-block')
-    })
-    $("textarea[name='podcast_description']").keyup(function() {
-        $("textarea[name='podcast_description']").prop('classList').remove('is-invalid')
-        $("div[name='invalid-podcast_description']").prop('classList').remove('d-block')
-    })
     $("select[name='addtoplaylist']").on('change', function() {
         $("select[name='addtoplaylist']").prop('classList').remove('is-invalid')
         $("div[name='invalid-addtoplaylist']").prop('classList').remove('d-block')
     })
-    $("input[name='media']").change(function() {
-        $("input[name='media']").prop('classList').remove('is-invalid')
+    $("input[id='checkbox'").change(function() {
+        $("input[id='checkbox'").prop('classList').remove('is-invalid')
         $("div[name='invalid-media']").prop('classList').remove('d-block')
-    })
-    $("input[name='image']").change(function() {
-        $("input[name='image']").prop('classList').remove('is-invalid')
-        $("div[name='invalid-type']").prop('classList').remove('d-block')
     })
     $("form").submit(function() {
 
-
-        if ($("input[name='podcast_name']").val() == "") {
-            $("input[name='podcast_name']").prop('classList').add('is-invalid')
-            $("div[name='invalid-podcast_name']").prop('classList').add('d-block')
-            event.preventDefault();
-        }
-        if ($("textarea[name='podcast_description']").val() == "") {
-            $("textarea[name='podcast_description']").prop('classList').add('is-invalid')
-            $("div[name='invalid-podcast_description']").prop('classList').add('d-block')
-            event.preventDefault();
-        }
+        var Checkbox = document.getElementById("checkbox");
         if ($("select[name='addtoplaylist']").val() == "") {
             $("select[name='addtoplaylist']").prop('classList').add('is-invalid')
             $("div[name='invalid-addtoplaylist']").prop('classList').add('d-block')
             event.preventDefault();
         }
-        // if ($("input[name='media']").val() == "") {
-        //     $("input[name='media']").prop('classList').add('is-invalid')
-        //     $("div[name='invalid-media']").prop('classList').add('d-block')
-        //     event.preventDefault();
-        // }
-        var obj = document.create_podcast;
-        var typeFile = obj.image.value.split('.');
-        typeFile = typeFile[typeFile.length - 1];
-        if (typeFile != "jpg" && typeFile != "jpeg" && typeFile != "gif" && typeFile != "png" && typeFile != "svg" && $("input[name='image']").val() != "") {
-
-            $("input[name='image']").prop('classList').add('is-invalid')
-            $("div[name='invalid-type']").prop('classList').add('d-block')
+        if (!Checkbox.checked) {
+            $("input[id='checkbox']").prop('classList').add('is-invalid')
+            $("div[name='invalid-media']").prop('classList').add('d-block')
             event.preventDefault();
-
-            obj.image.focus();
-            return false;
-        } else if ($("input[name='image']").val() == "") {
-            $("input[name='image']").prop('classList').add('is-invalid')
-            $("div[name='invalid-image']").prop('classList').add('d-block')
-            event.preventDefault();
-
-        } else return true;
-
-        if (!form.media.checked) {
-            alert("Please indicate that you accept the Terms and Conditions");
-            form.media.focus();
-            return false;
         }
-        return true;
-
     });
 </script>
 

@@ -11,7 +11,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Profile - Brand</title>
+        <title>Upload Episode</title>
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -28,6 +28,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link rel="stylesheet" href="assets/css/font.css">
         <link rel="stylesheet" href="assets/css/manage.css">
+        <link rel="shortcut icon" href="assets/img/image_1.svg">
     </head>
     <style>
         input[type="datetime-local"]::before {
@@ -103,7 +104,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
                                                 กรุณาอัพโหลดไฟล์
                                             </div>
                                             <div class="invalid" name="invalid-type">
-                                                กรุณาอัพโหลดไฟล์ที่มีนามสกุล .mp3 .mp4 .wav .aac เท่านั้น
+                                                กรุณาอัพโหลดไฟล์ที่มีนามสกุล .mp3 .mp4 .wav .aac .m4a เท่านั้น
                                             </div>
                                         </div>
                                         <div class="col-xl-8 col-lg-8 col-md-6 col-6">
@@ -183,7 +184,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
             var obj = document.upload_media;
             var typeFile = obj.file.value.split('.');
             typeFile = typeFile[typeFile.length - 1];
-            if (typeFile != "mp3" && typeFile != "mp4" && typeFile != "wav" && typeFile != "aac" && $("input[name='file']").val() != "") {
+            if (typeFile != "mp3" && typeFile != "mp4" && typeFile != "wav" && typeFile != "aac" && typeFile != "m4a" && $("input[name='file']").val() != "") {
 
                 $("input[name='file']").prop('classList').add('is-invalid')
                 $("div[name='invalid-type']").prop('classList').add('d-block')

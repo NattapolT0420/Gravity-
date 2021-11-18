@@ -11,7 +11,7 @@ if (isset($_POST["txtKeyword"])) {
 </script>
 <div class="navbar navbar-light navbar-expand bg-white shadow topbar fixed-top">
     <div class="container-fluid">
-        <div class="sidebar-brand-logo col-xl-2 col-lg-2 col-md-4 col-4" onclick="location.href='index.php';"><img src="assets/img/logo.svg" style="width: 100%;"></div>
+        <div class="sidebar-brand-logo col-xl-1 col-lg-2 col-md-4 col-4" onclick="location.href='index.php';"><img src="assets/img/logo.svg" style="width: 100%;"></div>
         <div class="col-xl-8 col-lg-8">
             <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" name="frmSearch" method="post">
                 <div class="input-group" id="searchbar">

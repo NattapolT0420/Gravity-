@@ -11,57 +11,74 @@ if ($email == false) {
 <head>
     <meta charset="UTF-8">
     <title>Create a New Password</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+    <link rel="stylesheet" href="assets/css/WhatsApp-Button-1.css">
+    <link rel="stylesheet" href="assets/css/WhatsApp-Button.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/css/font.css">
+    <link rel="shortcut icon" href="assets/img/image_1.svg">
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 offset-md-4 form">
-                <form action="new-password.php" method="POST" autocomplete="off">
-                    <h2 class="text-center">กำหนดรหัสผ่านใหม่</h2>
-                    <?php
-                    if (isset($_SESSION['info'])) {
-                    ?>
-                        <div class="alert alert-success text-center">
-                            <?php echo $_SESSION['info']; ?>
-                        </div>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if (count($errors) > 0) {
-                    ?>
-                        <div class="alert alert-danger text-center">
-                            <?php
-                            foreach ($errors as $showerror) {
-                                echo $showerror;
-                            }
-                            ?>
-                        </div>
-                    <?php
-                    }
-                    ?>
-                    <div class="form-group">
-                        <input class="form-control" type="password" name="password" placeholder="กำหนดรหัสผ่านใหม่" required id="password">
-                    </div>
-                    <p id="pw"></p>
-                    <div class="form-group">
-                        <input class="form-control" type="password" name="cpassword" placeholder="ยืนยันรหัสผ่าน" required id="cpassword">
-                    </div>
-                    <p id="cpw"></p>
-                    <div class="form-group">
-                        <input class="form-control button" type="submit" name="change-password" value="เปลี่ยนรหัสผ่าน">
-                    </div>
-                </form>
+    <div class="container-login100">
+        <div class="login" style="margin-top: 40px;">
+            <div class="d-flex justify-content-center" style="margin-top:7%;">
+                <img src=".\assets\img\logo.svg" alt="logo" width="80%">
             </div>
+            <form action="new-password.php" method="POST" autocomplete="off" style="margin-left: 7%; margin-right: 7%; margin-top: 10%;" novalidate>
+                <h2 class="text-center" style="margin-top: 50px; margin-bottom: 30px;">กำหนดรหัสผ่านใหม่</h2>
+                <?php
+                if (isset($_SESSION['info'])) {
+                ?>
+                    <div class="alert alert-success text-center">
+                        <?php echo $_SESSION['info']; ?>
+                    </div>
+                <?php
+                }
+                ?>
+                <?php
+                if (count($errors) > 0) {
+                ?>
+                    <div class="alert alert-danger text-center">
+                        <?php
+                        foreach ($errors as $showerror) {
+                            echo $showerror;
+                        }
+                        ?>
+                    </div>
+                <?php
+                }
+                ?>
+                <div class="wrap-input100" style="margin-bottom: 20px; margin-top: 20px;">
+                    <input class="input100" type="password" name="password" placeholder="กำหนดรหัสผ่านใหม่" required id="password">
+                </div>
+                <p id="pw"></p>
+                <div class="wrap-input100" style="margin-bottom: 20px; margin-top: 20px;">
+                    <input class="input100" type="password" name="cpassword" placeholder="ยืนยันรหัสผ่าน" required id="cpassword">
+                </div>
+                <p id="cpw"></p>
+                <div class="btn-center">
+                    <input class="login100-form-btn" type="submit" name="change-password" value="เปลี่ยนรหัสผ่าน" style="margin-top: 30px;">
+                </div>
+            </form>
         </div>
     </div>
 
+
 </body>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/bs-init.js"></script>
+<script src="assets/js/theme.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script>
     function validatePassword(password) {
         const re_pw = /^[A-Z][A-Za-z0-9]{7,14}$/;

@@ -48,7 +48,7 @@
                         include_once('../../db/CRUD.php');
                         $fetchdata = new CRUD();
                         $id = $fetch_info['id'];
-                        $sql = $fetchdata->playlist($id, $text_search);
+                        $sql = $fetchdata->playlist_all($id, $text_search);
                         while ($row = mysqli_fetch_array($sql, MYSQLI_ASSOC)) {
 
                         ?>

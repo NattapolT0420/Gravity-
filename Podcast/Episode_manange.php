@@ -10,7 +10,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Table - Brand</title>
+        <title>Episode Manager</title>
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -23,6 +23,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
         <link rel="stylesheet" href="assets/css/WhatsApp-Button-1.css">
         <link rel="stylesheet" href="assets/css/WhatsApp-Button.css">
         <link rel="stylesheet" href="assets/css/font.css">
+        <link rel="shortcut icon" href="assets/img/image_1.svg">
 
     </head>
 
@@ -33,7 +34,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
                     <?php require("./assets/php/nav.php"); ?>
                     <div class="container">
                         <div style="margin-top: 30px;">
-                            <h3 class="text-dark mb-4">Manage Podcasts</h3>
+                            <h3 class="text-dark mb-4">Manage Episode</h3>
                         </div>
                         <div class="card shadow">
                             <div class="card-header py-3">

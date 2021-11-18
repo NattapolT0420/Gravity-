@@ -2,6 +2,7 @@
     <footer class="footer mt-auto py-3 fixed-bottom" style="background-color: #f0f2f5; margin-top: 50px;">
         <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
         <div class="container">
+            <marquee scrollamount="5" class="track-name" id="track-name">Track Name</marquee>
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                     <div class="slider_container">
@@ -37,10 +38,13 @@
                     </div>
                 </div>
             </div>
-
-
-            <marquee scrollamount="5" class="track-name" id="track-name">Track Name</marquee>
-
+            <div class="row">
+                <div class="  slider_container col-xl-2 col-lg-2 col-md-4 col-4">
+                    <i class="fa fa-volume-down"></i>
+                    <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
+                    <i class="fa fa-volume-up"></i>
+                </div>
+            </div>
         </div>
     </footer>
 </div>

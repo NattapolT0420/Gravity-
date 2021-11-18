@@ -67,7 +67,7 @@
 }
 
 @media(prefers-reduced-motion: no-preference) {
-    :root {
+     :root {
         scroll-behavior: smooth
     }
 }
@@ -11069,6 +11069,7 @@ a:focus {
 #wrapper #content-wrapper {
     background-color: #f8f9fc;
     width: 100%;
+    height: 100%;
     overflow-x: hidden
 }
 

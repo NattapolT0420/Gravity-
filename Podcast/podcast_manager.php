@@ -32,7 +32,7 @@ if (isset($_POST['insert'])) {
         echo "<script>alert('กรุณาระบุประเภทของ Podcast');</script>";
         echo "<script>window.location.href='create_podcast.php'</script>";
     } else if (empty($_FILES['image']['tmp_name'])) {
-        echo "<script>alert('กรุณาอัพโหลดรูปภา');</script>";
+        echo "<script>alert('กรุณาอัพโหลดรูปภาพ');</script>";
         echo "<script>window.location.href='create_podcast.php'</script>";
     } else {
         echo "<script>alert('มีบางอย่างผิดพลาดกรุณาลองใหม่ในภายหลัง!');</script>";

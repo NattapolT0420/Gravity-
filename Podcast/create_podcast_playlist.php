@@ -1,6 +1,9 @@
 <?php require("./assets/php/checklogin.php");
-// require("./assets/php/connection.php");
+require("../../db/db_podcast.php");
 if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+    }
 ?>
     <!DOCTYPE html>
     <html>
@@ -8,7 +11,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Profile - Brand</title>
+        <title>Create Podcast</title>
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -23,19 +26,18 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
         <link rel="stylesheet" href="assets/css/WhatsApp-Button.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link rel="stylesheet" href="assets/css/font.css">
+        <link rel="shortcut icon" href="assets/img/image_1.svg">
     </head>
 
     <body id="page-top">
-        <?php require("./assets/php/nav.php");
-        require("./assets/php/upload.php");
-        ?>
-        <div id="wrapper">
 
+        <div id="wrapper">
             <div class="d-flex flex-column" id="content-wrapper">
                 <div id="content">
+                    <?php require("./assets/php/nav.php"); ?>
                     <div class="container">
                         <div style="margin-top: 30px;">
-                            <h3 class="text-dark mb-4">Create Playlist</h3>
+                            <h3 class="text-dark mb-4">Create Your Playlist</h3>
                         </div>
                         <div class="card shadow">
                             <div class="card-header py-3">
@@ -43,33 +45,37 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
                                 </p>
                             </div>
                             <div class="card-body" style="padding-right: 10%;">
-                                <form method="post" action="create_playlist.php" enctype="multipart/form-data" novalidate name="create_playlist">
+                                <form method="post" action="create_playlist.php" novalidate enctype="multipart/form-data" name="create_playlist">
                                     <div class="form-floating" style="margin-bottom: 20px;">
-                                        <input type="text" class="form-control" name="playlist" placeholder="Playlist name">
+                                        <input type="text" class="form-control" id="playlist" name="playlist" placeholder="playlist name">
                                         <label for="floatingInput">Playlist name</label>
                                         <div class="invalid" name="invalid-playlist">
                                             กรุณาระบุชื่อของ Playlist
                                         </div>
                                     </div>
                                     <div class="form-floating" style="margin-bottom: 20px;">
-                                        <textarea class="form-control" placeholder="Podcast description" name="playlist_description" style="resize: none ; height: 150px;" maxlength="600"></textarea>
+                                        <textarea class="form-control" placeholder="Podcast description" id="playlist_description" name="playlist_description" style="resize: none ; height: 150px;" maxlength="600"></textarea>
                                         <label for="floatingTextarea2">Playlist description
                                         </label>
                                         <div class="invalid" name="invalid-playlist_description">
                                             กรุณาเขียนคำอธิบายของ Playlist
                                         </div>
                                     </div>
-                                    <div class="row " style="margin-bottom: 80px">
-                                        <div class="col align-self-center">
-                                            <input class="form-control" type="file" accept="image/*" name="image">
-                                        </div>
-                                        <div class="invalid" name="invalid-image">
-                                            กรุณาอัพโหลดรูปภาพปกของ Playlist
-                                        </div>
-                                        <div class="invalid" name="invalid-type">
-                                            กรุณาอัพโหลดไฟล์ที่มีนามสกุล .jpg .jpeg .gif .png .svg เท่านั้น
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-7">
+                                            <input class="form-control" type="file" accept="image/*" name="image" id="file">
+                                            <div class="invalid" name="invalid-image">
+                                                กรุณาอัพโหลดรูปภาพปกของ Playlist
+                                            </div>
+                                            <div class="invalid" name="invalid-type">
+                                                กรุณาอัพโหลดไฟล์ที่มีนามสกุล .jpg .jpeg .gif .png .svg เท่านั้น
+                                            </div>
+                                            <div class="invalid" name="invalid-size">
+                                                กรุณาอัพโหลดรูปภาพที่มีขนาด 400x400 px เท่านั้น
+                                            </div>
                                         </div>
                                     </div>
+                                    <input type="text" class="id_cp" name="id_cp" value="<?php echo $id; ?>">
                                     <div class="row">
                                         <div class="col-xl-8 col-lg-8 col-md-10 col-8">
                                         </div>
@@ -79,6 +85,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
                                             </div>
                                         </div>
                                     </div>
+
                                 </form>
                             </div>
 
@@ -102,14 +109,19 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
             $("textarea[name='playlist_description']").prop('classList').remove('is-invalid')
             $("div[name='invalid-playlist_description']").prop('classList').remove('d-block')
         })
-        $("select[name='category']").on('change', function() {
-            $("select[name='category']").prop('classList').remove('is-invalid')
-            $("div[name='invalid-category']").prop('classList').remove('d-block')
-        })
         $("input[name='image']").change(function() {
             $("input[name='image']").prop('classList').remove('is-invalid')
             $("div[name='invalid-image']").prop('classList').remove('d-block')
         })
+        $("input[name='image']").change(function() {
+            $("input[name='image']").prop('classList').remove('is-invalid')
+            $("div[name='invalid-type']").prop('classList').remove('d-block')
+        })
+        $("input[name='image']").change(function() {
+            $("input[name='image']").prop('classList').remove('is-invalid')
+            $("div[name='invalid-size']").prop('classList').remove('d-block')
+        })
+
         $("form").submit(function() {
 
 
@@ -136,20 +148,57 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
             var obj = document.create_playlist;
             var typeFile = obj.image.value.split('.');
             typeFile = typeFile[typeFile.length - 1];
-            if (typeFile != "jpg" && typeFile != "jpeg" && typeFile != "gif" && typeFile != "png" && typeFile != "svg" && $("input[name='image']").val() != "") {
-
-                $("input[name='image']").prop('classList').add('is-invalid')
-                $("div[name='invalid-type']").prop('classList').add('d-block')
-                event.preventDefault();
-
-                obj.image.focus();
-                return false;
-            } else if ($("input[name='image']").val() == "") {
+            if ($("input[name='image']").val() == "") {
                 $("input[name='image']").prop('classList').add('is-invalid')
                 $("div[name='invalid-image']").prop('classList').add('d-block')
                 event.preventDefault();
 
-            } else return true;
+            } else {
+                if (typeFile != "jpg" && typeFile != "jpeg" && typeFile != "gif" && typeFile != "png" && typeFile != "svg" && $("input[name='image']").val() != "") {
+
+                    $("input[name='image']").prop('classList').add('is-invalid')
+                    $("div[name='invalid-type']").prop('classList').add('d-block')
+                    event.preventDefault();
+
+                    obj.image.focus();
+                    return false;
+                } else {
+                    if (imgwidth == maxwidth && imgheight == maxheight) {
+                        $("#response").text("ผ่านครับ");
+                    } else {
+                        $("input[name='image']").prop('classList').add('is-invalid')
+                        $("div[name='invalid-size']").prop('classList').add('d-block')
+                        event.preventDefault();
+                        obj.image.focus();
+                        return false;
+                    }
+                }
+            }
+        });
+        var _URL = window.URL || window.webkitURL;
+        var imgwidth = 0;
+        var imgheight = 0;
+        var maxwidth = 400;
+        var maxheight = 400;
+        $('#file').change(function() {
+            var file = $(this)[0].files[0];
+
+            img = new Image();
+
+            img.src = _URL.createObjectURL(file);
+            img.onload = function() {
+                imgwidth = this.width;
+                imgheight = this.height;
+
+                $("#width").text(imgwidth);
+                $("#height").text(imgheight);
+                if (imgwidth != maxwidth && imgheight != maxheight) {
+                    $("input[name='image']").prop('classList').add('is-invalid')
+                    $("div[name='invalid-size']").prop('classList').add('d-block')
+                    event.preventDefault();
+                    obj.image.focus();
+                }
+            };
         });
     </script>
 <?php
