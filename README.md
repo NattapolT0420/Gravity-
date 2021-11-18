@@ -1,4 +1,4 @@
-﻿##Gravity Development Podcast
+## Gravity Development Podcast
 
 ## This Project is demo for Computer Education KMUTNB poocast
 
